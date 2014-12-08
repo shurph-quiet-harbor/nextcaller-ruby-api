@@ -34,20 +34,22 @@ module NextcallerClient
       @log.debug('Request url: %s' % url) if debug
       @log.debug('Request body: %s' % data.to_s) if debug && method == 'POST'
 
-      response = https.start { |http| http.request(request) }
-      case response
-        when Net::HTTPSuccess then
-          response
-        else
-          if response.code.to_i.between?(400, 499)
-            raise HttpException.new(Utils.parse_error_response(response)), '%s Client Error: %s' % [response.code, response.message]
-          elsif response.code.to_i.between?(500, 599)
-            raise HttpException.new(Utils.parse_error_response(response)), '%s Server Error: %s' % [response.code, response.message]
-          end
+      begin
+        response = https.start { |http| http.request(request) }
+        case response
+          when Net::HTTPSuccess then response
+          else
+            if response.code.to_i.between?(400, 499)
+              raise HttpException.new(Utils.parse_error_response(response)), '%s Client Error: %s' % [response.code, response.message]
+            elsif response.code.to_i.between?(500, 599)
+              raise HttpException.new(Utils.parse_error_response(response)), '%s Server Error: %s' % [response.code, response.message]
+            end
+        end
+      rescue Net::ReadTimeout
+        raise HttpException.new({}), 'Server Error: read timeout error'
       end
     end
 
   end
 
 end
-

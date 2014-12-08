@@ -25,23 +25,23 @@ Or install it yourself as:
 **Example**
 
     require 'nextcaller_client'
-    api_key = "XXXXX"
-    api_secret = "YYYYY"
+    username = "XXXXX"
+    password = "YYYYY"
     phone_number = "121212..."
-    client = NextcallerClient::Client.new(api_key, api_secret)
+    client = NextcallerClient::Client.new(username, password)
     resp = client.get_by_phone(phone_number)
     print resp
     
 **Initializing client**
 
     require 'nextcaller_client'
-    api_key = "XXXXX"
-    api_secret = "YYYYY"
-    client = NextcallerClient::Client.new(api_key, api_secret)
+    username = "XXXXX"
+    password = "YYYYY"
+    client = NextcallerClient::Client.new(username, password)
     
 **Get profile by phone**
 
-    resp = client.get_by_phone(phone, response_format, debug)
+    resp = client.get_by_phone(phone, debug)
     
     # arguments:
     #   phone           -- 10 digits phone, str or int, required
@@ -49,7 +49,7 @@ Or install it yourself as:
 
 **Get profile by id**
 
-    resp = client.get_by_profile_id(profile_id, response_format, debug)
+    resp = client.get_by_profile_id(profile_id, debug)
     
     # arguments:
     #   profile_id      -- Profile identifier, required
@@ -65,6 +65,14 @@ Or install it yourself as:
     #   debug           -- boolean (default false)
     
     # Returns 204 response in the case of the succesfull request.
+
+**Get fraud level**
+
+    resp = client.get_fraud_level(phone, debug)
+
+    # arguments:
+    #   phone           -- 10 digits phone, str or int, required
+    #   debug           -- boolean (default false)
 
 
 ##Exceptions
