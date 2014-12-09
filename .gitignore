@@ -1,1 +1,4 @@
 /pkg
+
+# RubyMine project files
+.idea

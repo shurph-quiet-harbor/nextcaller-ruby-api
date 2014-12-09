@@ -1,28 +1,29 @@
 require_relative './test_base'
 require_relative './constants'
 
-class PhoneTestCase < BaseTestCase
+class PlatformPhoneTestCase < BaseTestCase
 
   def initialize(name)
     @phone = '2125558383'
+    @platform_username = 'user12345'
     super(name)
   end
 
-  def test_by_short_phone
+  def test_by_wrong_phone
     @phone = '212555838'
     stub_request(:get, prepare_url_for_test('records')).to_return(:body => PHONE_JSON_RESULT_EXAMPLE, :status => 200)
-    assert_raises(ArgumentError) { @client.get_by_phone(@phone) }
+    assert_raises(ArgumentError) { @client_platform.get_by_phone(@phone, @platform_username) }
   end
 
-  def test_by_wrong_phone
-    @phone = 'XXXXXXXXXX'
+  def test_by_wrong_platform
+    @platform_username = 'user#12345'
     stub_request(:get, prepare_url_for_test('records')).to_return(:body => PHONE_JSON_RESULT_EXAMPLE, :status => 200)
-    assert_raises(ArgumentError) { @client.get_by_phone(@phone) }
+    assert_raises(ArgumentError) { @client_platform.get_by_phone(@phone, @platform_username) }
   end
 
   def test_by_phone_json_request
     stub_request(:get, prepare_url_for_test('records')).to_return(:body => PHONE_JSON_RESULT_EXAMPLE, :status => 200)
-    res = @client.get_by_phone(@phone)
+    res = @client_platform.get_by_phone(@phone, @platform_username)
     refute_nil(res['records'])
     assert_equal(res['records'][0]['email'], 'demo@nextcaller.com')
     assert_equal(res['records'][0]['first_name'], 'Jerry')
