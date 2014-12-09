@@ -1,3 +1,6 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 TEST_USERNAME = 'username'
 TEST_PASSWORD = 'password'
 
