@@ -17,7 +17,6 @@ class PlatformUserTestCase < BaseTestCase
   def test_platform_user_json_request
     stub_request(:get, prepare_url_for_test('platform_users/%s' % @platform_username)).to_return(:body => PLATFORM_USER_JSON_RESULT, :status => 200)
     res = @client_platform.get_platform_user(@platform_username)
-    assert_equal(res['total_calls']['2014­03'], 7)
     assert_equal(res['number_of_operations'], 24)
   end
 

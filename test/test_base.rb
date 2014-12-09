@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 require 'nextcaller_client'
 require 'webmock/minitest'
 require 'minitest/autorun'
