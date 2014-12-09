@@ -8,6 +8,8 @@ client = NextcallerClient::NextCallerPlatformClient.new(username, password, sand
 
 begin
   response_content = client.get_platform_statistics
+  puts response_content.class # Response is a hash
+  puts "Platform name: " + response_content['object_list'][0]['username'] # Retrieve platform name for example
   puts response_content
 rescue ArgumentError => error
   puts error.message
@@ -15,7 +17,9 @@ rescue NextcallerClient::HttpException => error
   puts error.message
   puts error.content
 end
-# Response example:
+# Output:
+# Hash
+# Platform name: user1
 # {
 #   "object_list"=>[
 #     {

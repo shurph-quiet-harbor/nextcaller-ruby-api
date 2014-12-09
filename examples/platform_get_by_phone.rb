@@ -10,6 +10,8 @@ client = NextcallerClient::NextCallerPlatformClient.new(username, password, sand
 
 begin
   response_content = client.get_by_phone(phone_number, platform_username)
+  puts response_content.class # Response is a hash
+  puts "First name: " + response_content['records'][0]['first_name'] # Retrieve first name for example
   puts response_content
 rescue ArgumentError => error
   puts error.message
@@ -17,7 +19,9 @@ rescue NextcallerClient::HttpException => error
   puts error.message
   puts error.content
 end
-# Response example:
+# Output:
+# Hash
+# First name: Jerry
 # {
 #   "records"=>[
 #     {

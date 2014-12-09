@@ -24,7 +24,7 @@ begin
     }
   } 
   response = client.update_by_profile_id(profile_id, data)
-  puts response.code
+  puts response.class # Response is a object of Net::HTTPNoContent
   puts 'Success'
 rescue ArgumentError => error
   puts error.message
@@ -32,5 +32,6 @@ rescue NextcallerClient::HttpException => error
   puts error.message
   puts error.content
 end
-# Response example: 
-# HTTP 204 NO CONTENT
+# Output: 
+# Net::HTTPNoContent
+# Success

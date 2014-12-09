@@ -75,13 +75,6 @@ Or install it yourself as:
     #   debug           -- boolean (default false)
 
 
-##Exceptions
-
-**NextcallerClient::HttpException**
-
-Thrown in the case of 4xx or 5xx response from server.
-'content' attribute contains parsed response body.
-
 ##Errors handling
 
 In case of wrong phone number a ArgumentError exception will be thrown:
@@ -96,8 +89,7 @@ In case of wrong platform name a ArgumentError exception will be thrown:
 
     ArgumentError('Invalid platform name: sd#s. .........)
 
-In any another way (if the library gets a response with the http code 4xx or 5xx, or a request times out), 
-the [NextcallerClient::HttpException](https://github.com/Nextcaller/nextcaller-ruby-api/blob/master/lib/nextcaller_client/exceptions.rb) exception is raised.
+[NextcallerClient::HttpException](https://github.com/Nextcaller/nextcaller-ruby-api/blob/master/lib/nextcaller_client/exceptions.rb) exeception is raised in the case of 4xx or 5xx response from server. 'content' attribute contains parsed response body.
 
     
 ##Notes
