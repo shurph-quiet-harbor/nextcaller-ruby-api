@@ -17,3 +17,5 @@ rescue NextcallerClient::HttpException => error
   puts error.message
   puts error.content
 end
+# Response example: 
+# HTTP 204 NO CONTENT

@@ -28,7 +28,7 @@ Or install it yourself as:
     username = "XXXXX"
     password = "YYYYY"
     phone_number = "121212..."
-    client = NextcallerClient::Client.new(username, password)
+    client = NextcallerClient::NextCallerClient.new(username, password)
     resp = client.get_by_phone(phone_number)
     print resp
     
@@ -37,7 +37,7 @@ Or install it yourself as:
     require 'nextcaller_client'
     username = "XXXXX"
     password = "YYYYY"
-    client = NextcallerClient::Client.new(username, password)
+    client = NextcallerClient::NextCallerClient.new(username, password)
     
 **Get profile by phone**
 
@@ -81,6 +81,23 @@ Or install it yourself as:
 
 Thrown in the case of 4xx or 5xx response from server.
 'content' attribute contains parsed response body.
+
+##Errors handling
+
+In case of wrong phone number a ArgumentError exception will be thrown:
+
+    ArgumentError('Invalid phone number: 1221. .........)
+
+In case of wrong profile id a ArgumentError exception will be thrown:
+
+    ArgumentError('Invalid profile id: assw2. .........)
+
+In case of wrong platform name a ArgumentError exception will be thrown:
+
+    ArgumentError('Invalid platform name: sd#s. .........)
+
+In any another way (if the library gets a response with the http code 4xx or 5xx, or a request times out), 
+the [NextcallerClient::HttpException](https://github.com/Nextcaller/nextcaller-ruby-api/blob/master/lib/nextcaller_client/exceptions.rb) exception is raised.
 
     
 ##Notes

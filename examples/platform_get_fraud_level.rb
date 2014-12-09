@@ -17,3 +17,8 @@ rescue NextcallerClient::HttpException => error
   puts error.message
   puts error.content
 end
+# Response example:
+# {
+#   "fraud_risk"=>"medium", 
+#   "spoofed"=>"unknown"
+# }
