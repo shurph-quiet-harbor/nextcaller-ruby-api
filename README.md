@@ -41,38 +41,38 @@ Or install it yourself as:
     
 **Get profile by phone**
 
-    resp = client.get_by_phone(phone, debug)
+    resp = client.get_by_phone(phone)
     
     # arguments:
     #   phone           -- 10 digits phone, str or int, required
-    #   debug           -- boolean (default false)
+
 
 **Get profile by id**
 
-    resp = client.get_by_profile_id(profile_id, debug)
+    resp = client.get_by_profile_id(profile_id)
     
     # arguments:
     #   profile_id      -- Profile identifier, required
-    #   debug           -- boolean (default false)
+
 
 **Update profile by id**
     
-    resp = client.update_by_profile_id(profile_id, data, debug)
+    resp = client.update_by_profile_id(profile_id, data)
     
     # arguments:
     #   profile_id      -- Profile identifier, required
     #   data            -- dictionary with changed data, required
-    #   debug           -- boolean (default false)
+
     
     # Returns 204 response in the case of the succesfull request.
 
 **Get fraud level**
 
-    resp = client.get_fraud_level(phone, debug)
+    resp = client.get_fraud_level(phone)
 
     # arguments:
     #   phone           -- 10 digits phone, str or int, required
-    #   debug           -- boolean (default false)
+
 
 
 ##Errors handling
