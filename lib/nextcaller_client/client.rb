@@ -4,25 +4,25 @@ module NextcallerClient
 
     attr_accessor :auth
 
-    def initialize(username, password, sandbox=false)
+    def initialize(username, password, sandbox=false, debug=false)
       auth = {username: username, password: password}
       @sandbox = sandbox
+      @debug = debug
       @transport = Transport.new(auth, DEFAULT_USER_AGENT)
     end
 
     # Get profiles by phone
     # arguments:
     #   phone           -- 10 digits phone, str ot int, required
-    #   debug           -- boolean (default false)
     #
-    def get_by_phone(phone, debug=false)
+    def get_by_phone(phone)
       Utils.validate_phone(phone)
       url_params = {
         phone: phone,
         format: JSON_RESPONSE_FORMAT
       }
       url = Utils.prepare_url('records/', @sandbox, url_params)
-      response = @transport.make_http_request(url, 'GET', debug)
+      response = @transport.make_http_request(url, 'GET', @debug)
 
       block_given? ? yield(response) : JSON.parse(response.body)
     end
@@ -30,15 +30,14 @@ module NextcallerClient
     # Get profile by id
     # arguments:
     #   profile_id      -- Profile identifier, required, length is 30
-    #   debug           -- boolean (default false)
     #
-    def get_by_profile_id(profile_id, debug=false)
+    def get_by_profile_id(profile_id)
       Utils.validate_profile_id(profile_id)
       url_params = {
         format: JSON_RESPONSE_FORMAT
       }
       url = Utils.prepare_url('users/%s/' % profile_id, @sandbox, url_params)
-      response = @transport.make_http_request(url, 'GET', debug)
+      response = @transport.make_http_request(url, 'GET', @debug)
 
       block_given? ? yield(response) : JSON.parse(response.body)
     end
@@ -47,16 +46,15 @@ module NextcallerClient
     # arguments:
     #   profile_id      -- Profile identifier, required, length is 30
     #   data            -- dictionary with changed data, required
-    #   debug           -- boolean (default false)
     #
-    def update_by_profile_id(profile_id, data, debug=false)
+    def update_by_profile_id(profile_id, data)
       Utils.validate_profile_id(profile_id)
       url_params = {
         format: JSON_RESPONSE_FORMAT
       }
       url = Utils.prepare_url('users/%s/' % profile_id, @sandbox, url_params)
       data = Utils.prepare_json_data(data)
-      response = @transport.make_http_request(url, 'POST', debug, data)
+      response = @transport.make_http_request(url, 'POST', @debug, data)
 
       block_given? ? yield(response) : response
     end
@@ -64,16 +62,15 @@ module NextcallerClient
     # Get fraud level for phone
     # arguments:
     #   phone           -- 10 digits phone, str ot int, required
-    #   debug           -- boolean (default false)
     #
-    def get_fraud_level(phone, debug=false)
+    def get_fraud_level(phone)
       Utils.validate_phone(phone)
       url_params = {
         phone: phone,
         format: JSON_RESPONSE_FORMAT
       }
       url = Utils.prepare_url('fraud/', @sandbox, url_params)
-      response = @transport.make_http_request(url, 'GET', debug)
+      response = @transport.make_http_request(url, 'GET', @debug)
 
       block_given? ? yield(response) : JSON.parse(response.body)
     end
@@ -88,9 +85,8 @@ module NextcallerClient
     # arguments:
     #   phone               -- 10 digits phone, str ot int, required
     #   platform_username   -- platform username, str.
-    #   debug               -- boolean (default false)
     #
-    def get_by_phone(phone, platform_username, debug=false)
+    def get_by_phone(phone, platform_username)
       Utils.validate_phone(phone)
       Utils.validate_platform_username(platform_username)
       url_params = {
@@ -99,7 +95,7 @@ module NextcallerClient
         format: JSON_RESPONSE_FORMAT
       }
       url = Utils.prepare_url('records/', @sandbox, url_params)
-      response = @transport.make_http_request(url, 'GET', debug)
+      response = @transport.make_http_request(url, 'GET', @debug)
 
       block_given? ? yield(response) : JSON.parse(response.body)
     end
@@ -108,9 +104,8 @@ module NextcallerClient
     # arguments:
     #   profile_id          -- Profile identifier, required, length is 30
     #   platform_username   -- platform username, str.
-    #   debug               -- boolean (default false)
     #
-    def get_by_profile_id(profile_id, platform_username, debug=false)
+    def get_by_profile_id(profile_id, platform_username)
       Utils.validate_profile_id(profile_id)
       Utils.validate_platform_username(platform_username)
       url_params = {
@@ -118,7 +113,7 @@ module NextcallerClient
         format: JSON_RESPONSE_FORMAT        
       }
       url = Utils.prepare_url('users/%s/' % profile_id, @sandbox, url_params)
-      response = @transport.make_http_request(url, 'GET', debug)
+      response = @transport.make_http_request(url, 'GET', @debug)
 
       block_given? ? yield(response) : JSON.parse(response.body)
     end
@@ -128,9 +123,8 @@ module NextcallerClient
     #   profile_id          -- Profile identifier, required, length is 30
     #   data                -- dictionary with changed data, required
     #   platform_username   -- platform username, str.
-    #   debug               -- boolean (default false)
     #
-    def update_by_profile_id(profile_id, platform_username, data, debug=false)
+    def update_by_profile_id(profile_id, platform_username, data)
       Utils.validate_profile_id(profile_id)
       Utils.validate_platform_username(platform_username)
       url_params = {
@@ -139,7 +133,7 @@ module NextcallerClient
       }
       url = Utils.prepare_url('users/%s/' % profile_id, @sandbox, url_params)
       data = Utils.prepare_json_data(data)
-      response = @transport.make_http_request(url, 'POST', debug, data)
+      response = @transport.make_http_request(url, 'POST', @debug, data)
 
       block_given? ? yield(response) : response
     end
@@ -149,9 +143,8 @@ module NextcallerClient
     #   phone               -- 10 digits phone, str ot int, required
     #   data                -- dictionary with changed data, required
     #   platform_username   -- platform username, str.
-    #   debug               -- boolean (default false)
     #
-    def get_fraud_level(phone, platform_username, debug=false)
+    def get_fraud_level(phone, platform_username)
       Utils.validate_phone(phone)
       Utils.validate_platform_username(platform_username)
       url_params = {
@@ -160,37 +153,37 @@ module NextcallerClient
         format: JSON_RESPONSE_FORMAT
       }
       url = Utils.prepare_url('fraud/', @sandbox, url_params)
-      response = @transport.make_http_request(url, 'GET', debug)
+      response = @transport.make_http_request(url, 'GET', @debug)
 
       block_given? ? yield(response) : JSON.parse(response.body)
     end
 
     # Get platform statistics
     # arguments:
-    #   debug               -- boolean (default false)
+    #   page               -- integer (default 1)
     #
-    def get_platform_statistics(debug=false)
+    def get_platform_statistics(page=1)
       url_params = {
-        format: JSON_RESPONSE_FORMAT
+        format: JSON_RESPONSE_FORMAT,
+        page: page,
       }
       url = Utils.prepare_url('platform_users/', @sandbox, url_params)
-      response = @transport.make_http_request(url, 'GET', debug)
-
+      response = @transport.make_http_request(url, 'GET', @debug)
+      puts response.body
       block_given? ? yield(response) : JSON.parse(response.body)
     end
 
     # Get platform user
     # arguments:
     #   platform_username   -- platform username, str.
-    #   debug               -- boolean (default false)
     #
-    def get_platform_user(platform_username, debug=false)
+    def get_platform_user(platform_username)
       Utils.validate_platform_username(platform_username)
       url_params = {
         format: JSON_RESPONSE_FORMAT
       }
       url = Utils.prepare_url('platform_users/%s/' % platform_username, @sandbox, url_params)
-      response = @transport.make_http_request(url, 'GET', debug)
+      response = @transport.make_http_request(url, 'GET', @debug)
 
       block_given? ? yield(response) : JSON.parse(response.body)
     end
@@ -199,16 +192,15 @@ module NextcallerClient
     # arguments:
     #   platform_username   -- platform username, str.
     #   data                -- dictionary with changed data, required
-    #   debug               -- boolean (default false)
     #
-    def update_platform_user(platform_username, data, debug=false)
+    def update_platform_user(platform_username, data)
       Utils.validate_platform_username(platform_username)
       url_params = {
         format: JSON_RESPONSE_FORMAT
       }
       url = Utils.prepare_url('platform_users/%s/' % platform_username, @sandbox, url_params)
       data = Utils.prepare_json_data(data)
-      response = @transport.make_http_request(url, 'POST', debug, data)
+      response = @transport.make_http_request(url, 'POST', @debug, data)
 
       block_given? ? yield(response) : response
     end  
