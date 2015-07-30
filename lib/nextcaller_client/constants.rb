@@ -6,6 +6,9 @@ module NextcallerClient
   DEFAULT_PROFILE_ID_LENGTH = 30
   DEFAULT_USER_AGENT = 'nextcaller/ruby/%s' % VERSION
 
+  DEFAULT_PLATFROM_ACCOUNT_HEADER = 'Nc-Account-Id'
+  DEFAULT_PLATFROM_ACCOUNT_ID = 'ME'
+
   # urls
   BASE_URL = 'api.nextcaller.com/v2/'
   FULL_URL = 'https://api.nextcaller.com/v2/'
