@@ -1,7 +1,7 @@
-require 'nextcaller_client'
+require '../lib/nextcaller_client'
 
-username = 'XXXXX'
-password = 'XXXXX'
+username = 'E72D42B98D2232703EE3'
+password = '826f22ade660d6612523b212b997094c70dba8e1'
 sandbox = false
 profile_id = '97d949a413f4ea8b85e9586e1f2d9a'
 

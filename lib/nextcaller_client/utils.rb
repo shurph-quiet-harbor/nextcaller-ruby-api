@@ -33,8 +33,8 @@ module NextcallerClient
       end
     end
 
-    #Validate platform_username
-    def self.validate_platform_username(value)
+    #Validate account_id
+    def self.validate_account_id(value)
       value = value.to_s
       if value =~ /\W/
         raise ArgumentError, 'Invalid platform name: %s. Platfrom name should contain only an alphanumeric character, including _.' % value

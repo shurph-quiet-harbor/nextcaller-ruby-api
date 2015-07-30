@@ -1,15 +1,15 @@
-require 'nextcaller_client'
+require '../lib/nextcaller_client'
 
 username = 'XXXXX'
 password = 'XXXXX'
 sandbox = false
-platform_username = 'user12345'
+account_id = 'user12345'
 phone_number = '2125558383'
 
 client = NextcallerClient::NextCallerPlatformClient.new(username, password, sandbox)
 
 begin
-  response_content = client.get_by_phone(phone_number, platform_username)
+  response_content = client.get_by_phone(phone_number, account_id)
   puts response_content.class # Response is a hash
   puts "First name: " + response_content['records'][0]['first_name'] # Retrieve first name for example
   puts response_content

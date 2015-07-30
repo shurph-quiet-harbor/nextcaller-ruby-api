@@ -84,14 +84,14 @@ module NextcallerClient
     # Get profiles by phone
     # arguments:
     #   phone               -- 10 digits phone, str ot int, required
-    #   platform_username   -- platform username, str.
+    #   account_id   -- platform username, str.
     #
-    def get_by_phone(phone, platform_username)
+    def get_by_phone(phone, account_id)
       Utils.validate_phone(phone)
-      Utils.validate_platform_username(platform_username)
+      Utils.validate_account_id(account_id)
       url_params = {
         phone: phone,
-        platform_username: platform_username, 
+        account_id: account_id,
         format: JSON_RESPONSE_FORMAT
       }
       url = Utils.prepare_url('records/', @sandbox, url_params)
@@ -103,13 +103,13 @@ module NextcallerClient
     # Get profiles by phone
     # arguments:
     #   profile_id          -- Profile identifier, required, length is 30
-    #   platform_username   -- platform username, str.
+    #   account_id   -- platform username, str.
     #
-    def get_by_profile_id(profile_id, platform_username)
+    def get_by_profile_id(profile_id, account_id)
       Utils.validate_profile_id(profile_id)
-      Utils.validate_platform_username(platform_username)
+      Utils.validate_account_id(account_id)
       url_params = {
-        platform_username: platform_username,
+        account_id: account_id,
         format: JSON_RESPONSE_FORMAT        
       }
       url = Utils.prepare_url('users/%s/' % profile_id, @sandbox, url_params)
@@ -122,13 +122,13 @@ module NextcallerClient
     # arguments:
     #   profile_id          -- Profile identifier, required, length is 30
     #   data                -- dictionary with changed data, required
-    #   platform_username   -- platform username, str.
+    #   account_id   -- platform username, str.
     #
-    def update_by_profile_id(profile_id, platform_username, data)
+    def update_by_profile_id(profile_id, account_id, data)
       Utils.validate_profile_id(profile_id)
-      Utils.validate_platform_username(platform_username)
+      Utils.validate_account_id(account_id)
       url_params = {
-        platform_username: platform_username, 
+        account_id: account_id,
         format: JSON_RESPONSE_FORMAT
       }
       url = Utils.prepare_url('users/%s/' % profile_id, @sandbox, url_params)
@@ -142,13 +142,13 @@ module NextcallerClient
     # arguments:
     #   phone               -- 10 digits phone, str ot int, required
     #   data                -- dictionary with changed data, required
-    #   platform_username   -- platform username, str.
+    #   account_id   -- platform username, str.
     #
-    def get_fraud_level(phone, platform_username)
+    def get_fraud_level(phone, account_id)
       Utils.validate_phone(phone)
-      Utils.validate_platform_username(platform_username)
+      Utils.validate_account_id(account_id)
       url_params = {
-        platform_username: platform_username,
+        account_id: account_id,
         phone: phone,
         format: JSON_RESPONSE_FORMAT
       }
@@ -175,14 +175,14 @@ module NextcallerClient
 
     # Get platform user
     # arguments:
-    #   platform_username   -- platform username, str.
+    #   account_id   -- platform username, str.
     #
-    def get_platform_user(platform_username)
-      Utils.validate_platform_username(platform_username)
+    def get_platform_user(account_id)
+      Utils.validate_account_id(account_id)
       url_params = {
         format: JSON_RESPONSE_FORMAT
       }
-      url = Utils.prepare_url('platform_users/%s/' % platform_username, @sandbox, url_params)
+      url = Utils.prepare_url('platform_users/%s/' % account_id, @sandbox, url_params)
       response = @transport.make_http_request(url, 'GET', @debug)
 
       block_given? ? yield(response) : JSON.parse(response.body)
@@ -190,15 +190,15 @@ module NextcallerClient
 
     # Update platform user data
     # arguments:
-    #   platform_username   -- platform username, str.
+    #   account_id   -- platform username, str.
     #   data                -- dictionary with changed data, required
     #
-    def update_platform_user(platform_username, data)
-      Utils.validate_platform_username(platform_username)
+    def update_platform_user(account_id, data)
+      Utils.validate_account_id(account_id)
       url_params = {
         format: JSON_RESPONSE_FORMAT
       }
-      url = Utils.prepare_url('platform_users/%s/' % platform_username, @sandbox, url_params)
+      url = Utils.prepare_url('platform_users/%s/' % account_id, @sandbox, url_params)
       data = Utils.prepare_json_data(data)
       response = @transport.make_http_request(url, 'POST', @debug, data)
 
