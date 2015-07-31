@@ -2,17 +2,16 @@ module NextcallerClient
 
   class Transport
 
-    attr_accessor :auth, :user_agent, :account_id, :log
+    attr_accessor :auth, :user_agent, :log
 
-    def initialize(auth, user_agent=DEFAULT_USER_AGENT, account_id=DEFAULT_PLATFROM_ACCOUNT_ID)
+    def initialize(auth, user_agent=DEFAULT_USER_AGENT, platform=false)
       @auth = auth
       @user_agent = user_agent
-      @account_id = account_id
       @log = Logger.new(STDOUT)
       @log.level = Logger::DEBUG
     end
 
-    def make_http_request(url, method='GET', debug=false, data={})
+    def make_http_request(url, method='GET', debug=false, data={}, account_id=nil)
       uri = URI.parse(url)
       case method
         when 'GET'
@@ -22,10 +21,11 @@ module NextcallerClient
           request['Content-Type'] = 'application/json'
           request.body = data
       end
+
       request.basic_auth(@auth[:username], @auth[:password])
       request['Connection'] = 'Keep-Alive'
       request['User-Agent'] = @user_agent if @user_agent
-      request[DEFAULT_PLATFROM_ACCOUNT_HEADER] = @account_id if @account_id
+      request[DEFAULT_PLATFROM_ACCOUNT_HEADER] = account_id if account_id
 
       hostname =  /\A\[(.*)\]\z/ =~ uri.host ? $1 : uri.host # ruby prior to 1.9.3 does not have 'hostname', which removes brackets from ipv6 addresses
       https = Net::HTTP.new(hostname, uri.port)
