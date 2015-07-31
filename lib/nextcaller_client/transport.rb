@@ -25,7 +25,7 @@ module NextcallerClient
       request.basic_auth(@auth[:username], @auth[:password])
       request['Connection'] = 'Keep-Alive'
       request['User-Agent'] = @user_agent if @user_agent
-      request[DEFAULT_PLATFROM_ACCOUNT_HEADER] = account_id if account_id
+      request[DEFAULT_PLATFORM_ACCOUNT_HEADER] = account_id if account_id
 
       hostname =  /\A\[(.*)\]\z/ =~ uri.host ? $1 : uri.host # ruby prior to 1.9.3 does not have 'hostname', which removes brackets from ipv6 addresses
       https = Net::HTTP.new(hostname, uri.port)

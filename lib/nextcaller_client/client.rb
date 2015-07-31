@@ -86,7 +86,7 @@ module NextcallerClient
     #   phone               -- 10 digits phone, str ot int, required
     #   account_id   -- platform username, str.
     #
-    def get_by_phone(phone, account_id=DEFAULT_PLATFROM_ACCOUNT_ID)
+    def get_by_phone(phone, account_id=DEFAULT_PLATFORM_ACCOUNT_ID)
       Utils.validate_phone(phone)
       Utils.validate_account_id(account_id)
       url_params = {
@@ -104,7 +104,7 @@ module NextcallerClient
     #   profile_id          -- Profile identifier, required, length is 30
     #   account_id   -- platform username, str.
     #
-    def get_by_profile_id(profile_id, account_id=DEFAULT_PLATFROM_ACCOUNT_ID)
+    def get_by_profile_id(profile_id, account_id=DEFAULT_PLATFORM_ACCOUNT_ID)
       Utils.validate_profile_id(profile_id)
       Utils.validate_account_id(account_id)
       url_params = {
@@ -122,7 +122,7 @@ module NextcallerClient
     #   data                -- dictionary with changed data, required
     #   account_id   -- platform username, str.
     #
-    def update_by_profile_id(profile_id, account_id=DEFAULT_PLATFROM_ACCOUNT_ID, data)
+    def update_by_profile_id(profile_id, account_id=DEFAULT_PLATFORM_ACCOUNT_ID, data)
       Utils.validate_profile_id(profile_id)
       Utils.validate_account_id(account_id)
       url_params = {
@@ -141,7 +141,7 @@ module NextcallerClient
     #   data                -- dictionary with changed data, required
     #   account_id   -- platform username, str.
     #
-    def get_fraud_level(phone, account_id=DEFAULT_PLATFROM_ACCOUNT_ID)
+    def get_fraud_level(phone, account_id=DEFAULT_PLATFORM_ACCOUNT_ID)
       Utils.validate_phone(phone)
       Utils.validate_account_id(account_id)
       url_params = {
@@ -174,7 +174,7 @@ module NextcallerClient
     # arguments:
     #   account_id   -- platform username, str.
     #
-    def get_platform_user(account_id=DEFAULT_PLATFROM_ACCOUNT_ID)
+    def get_platform_user(account_id=DEFAULT_PLATFORM_ACCOUNT_ID)
       Utils.validate_account_id(account_id)
       url_params = {
         format: JSON_RESPONSE_FORMAT
@@ -190,7 +190,7 @@ module NextcallerClient
     #   account_id   -- platform username, str.
     #   data                -- dictionary with changed data, required
     #
-    def update_platform_user(account_id=DEFAULT_PLATFROM_ACCOUNT_ID, data)
+    def update_platform_user(account_id=DEFAULT_PLATFORM_ACCOUNT_ID, data)
       Utils.validate_account_id(account_id)
       url_params = {
         format: JSON_RESPONSE_FORMAT
