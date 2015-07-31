@@ -42,6 +42,21 @@ module NextcallerClient
       block_given? ? yield(response) : JSON.parse(response.body)
     end
 
+    # Get profile by name and address
+    # arguments:
+    #   data                -- dictionary with changed data, required
+    #
+    def get_by_address_name(data)
+      Utils.validate_address(data)
+      url_params = {
+          format: JSON_RESPONSE_FORMAT
+      }.merge(data)
+      url = Utils.prepare_url('records/', @sandbox, url_params)
+      response = @transport.make_http_request(url, 'GET', @debug)
+
+      block_given? ? yield(response) : JSON.parse(response.body)
+    end
+
     # Update profile by id
     # arguments:
     #   profile_id      -- Profile identifier, required, length is 30
@@ -135,6 +150,23 @@ module NextcallerClient
       block_given? ? yield(response) : response
     end
 
+    # Get profile by name and address
+    # arguments:
+    #   data                -- dictionary with changed data, required
+    #   account_id   -- platform username, str.
+    #
+    def get_by_address_name(data, account_id)
+      Utils.validate_account_id(account_id)
+      Utils.validate_address(data)
+      url_params = {
+          format: JSON_RESPONSE_FORMAT
+      }.merge(data)
+      url = Utils.prepare_url('records/', @sandbox, url_params)
+      response = @transport.make_http_request(url, 'GET', @debug, account_id=account_id)
+
+      block_given? ? yield(response) : JSON.parse(response.body)
+    end
+
     # Get profiles by phone
     # arguments:
     #   phone               -- 10 digits phone, str ot int, required
@@ -145,7 +177,6 @@ module NextcallerClient
       Utils.validate_phone(phone)
       Utils.validate_account_id(account_id)
       url_params = {
-        account_id: account_id,
         phone: phone,
         format: JSON_RESPONSE_FORMAT
       }

@@ -14,4 +14,7 @@ module NextcallerClient
   FULL_URL = 'https://api.nextcaller.com/v2/'
   FULL_SANDBOX_URL = 'https://api.sandbox.nextcaller.com/v2/'
 
+  # address
+  ADDRESS_MANDATORY_FIELDS = %w(first_name last_name address)
+  ADDRESS_ALLOWED_FIELDS = ADDRESS_MANDATORY_FIELDS + %w(city state zip_code middle_name apt_suite extended_zip)
 end

@@ -33,6 +33,27 @@ module NextcallerClient
       end
     end
 
+    #Validate address_data
+    def self.validate_address(address_data)
+      unless address_data
+          raise ArgumentError, 'Invalid address data: %s. Address data should be filled.' % address_data
+      end
+      unless address_data.kind_of?(Array)
+          raise ArgumentError, 'Invalid address data: %s. Address data cannot be type of %s.' % address_data, address_data.class
+      end
+      ADDRESS_MANDATORY_FIELDS.each do |key|
+        unless address_data.has_key?(key)
+          raise ArgumentError, 'Not all mandatory fields are supplied: %s.' % ADDRESS_MANDATORY_FIELDS.join(',')
+        end
+      end
+      address_data.each do |key, value|
+        unless ADDRESS_ALLOWED_FIELDS.has_key?(key)
+          raise ArgumentError, 'Invalid address field: %s. Allowed fields: %s.' % key, ADDRESS_ALLOWED_FIELDS.join(',')
+        end
+      end
+    end
+
+
     #Validate account_id
     def self.validate_account_id(value)
       value = value.to_s
