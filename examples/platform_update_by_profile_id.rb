@@ -1,4 +1,4 @@
-require '../lib/nextcaller_client'
+require 'nextcaller_client'
 
 username = 'XXXXX'
 password = 'XXXXX'
