@@ -11,7 +11,7 @@ module NextcallerClient
       @log.level = Logger::DEBUG
     end
 
-    def make_http_request(url, method='GET', debug=false, data={}, account_id=nil)
+    def make_http_request(url, method='GET', debug=false, data={}, account_id: nil)
       uri = URI.parse(url)
       case method
         when 'GET'

@@ -109,7 +109,7 @@ module NextcallerClient
         format: JSON_RESPONSE_FORMAT
       }
       url = Utils.prepare_url('records/', @sandbox, url_params)
-      response = @transport.make_http_request(url, 'GET', @debug, account_id=account_id)
+      response = @transport.make_http_request(url, 'GET', @debug, account_id: account_id)
 
       block_given? ? yield(response) : JSON.parse(response.body)
     end
@@ -126,7 +126,7 @@ module NextcallerClient
         format: JSON_RESPONSE_FORMAT
       }
       url = Utils.prepare_url('users/%s/' % profile_id, @sandbox, url_params)
-      response = @transport.make_http_request(url, 'GET', @debug, account_id=account_id)
+      response = @transport.make_http_request(url, 'GET', @debug, account_id: account_id)
 
       block_given? ? yield(response) : JSON.parse(response.body)
     end
@@ -145,7 +145,7 @@ module NextcallerClient
       }
       url = Utils.prepare_url('users/%s/' % profile_id, @sandbox, url_params)
       data = Utils.prepare_json_data(data)
-      response = @transport.make_http_request(url, 'POST', @debug, data, account_id=account_id)
+      response = @transport.make_http_request(url, 'POST', @debug, data, account_id: account_id)
 
       block_given? ? yield(response) : response
     end
@@ -162,7 +162,7 @@ module NextcallerClient
           format: JSON_RESPONSE_FORMAT
       }.merge(data)
       url = Utils.prepare_url('records/', @sandbox, url_params)
-      response = @transport.make_http_request(url, 'GET', @debug, account_id=account_id)
+      response = @transport.make_http_request(url, 'GET', @debug, account_id: account_id)
 
       block_given? ? yield(response) : JSON.parse(response.body)
     end
@@ -181,7 +181,7 @@ module NextcallerClient
         format: JSON_RESPONSE_FORMAT
       }
       url = Utils.prepare_url('fraud/', @sandbox, url_params)
-      response = @transport.make_http_request(url, 'GET', @debug, account_id=account_id)
+      response = @transport.make_http_request(url, 'GET', @debug, account_id: account_id)
 
       block_given? ? yield(response) : JSON.parse(response.body)
     end
@@ -196,7 +196,7 @@ module NextcallerClient
         page: page,
       }
       url = Utils.prepare_url('platform_users/', @sandbox, url_params)
-      response = @transport.make_http_request(url, 'GET', @debug, account_id=account_id)
+      response = @transport.make_http_request(url, 'GET', @debug, account_id: account_id)
       puts response.body
       block_given? ? yield(response) : JSON.parse(response.body)
     end
