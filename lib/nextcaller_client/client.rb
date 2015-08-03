@@ -27,6 +27,22 @@ module NextcallerClient
       block_given? ? yield(response) : JSON.parse(response.body)
     end
 
+    # Get profile by email
+    # arguments:
+    #   email      -- Email, required, str, length is 30
+    #
+    def get_by_email(email)
+      Utils.validate_email(email)
+      url_params = {
+          format: JSON_RESPONSE_FORMAT,
+          email: email
+      }
+      url = Utils.prepare_url('records/', @sandbox, url_params)
+      response = @transport.make_http_request(url, 'GET', @debug)
+
+      block_given? ? yield(response) : JSON.parse(response.body)
+    end
+
     # Get profile by id
     # arguments:
     #   profile_id      -- Profile identifier, required, length is 30
@@ -126,6 +142,23 @@ module NextcallerClient
         format: JSON_RESPONSE_FORMAT
       }
       url = Utils.prepare_url('users/%s/' % profile_id, @sandbox, url_params)
+      response = @transport.make_http_request(url, 'GET', @debug, account_id: account_id)
+
+      block_given? ? yield(response) : JSON.parse(response.body)
+    end
+
+    # Get profile by email
+    # arguments:
+    #   email      -- Email, required, str, length is 30
+    #
+    def get_by_email(email, account_id=DEFAULT_PLATFORM_ACCOUNT_ID,)
+      Utils.validate_account_id(account_id)
+      Utils.validate_email(email)
+      url_params = {
+          format: JSON_RESPONSE_FORMAT,
+          email: email
+      }
+      url = Utils.prepare_url('records/', @sandbox, url_params)
       response = @transport.make_http_request(url, 'GET', @debug, account_id: account_id)
 
       block_given? ? yield(response) : JSON.parse(response.body)

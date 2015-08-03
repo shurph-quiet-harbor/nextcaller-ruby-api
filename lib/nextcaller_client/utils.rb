@@ -25,6 +25,14 @@ module NextcallerClient
       end
     end
 
+    #Validate email format
+    def self.validate_email(value)
+      value = value.to_s
+      unless value =~ /^.+@.+\..{2,}$/
+        raise ArgumentError, 'Invalid email: %s.' % value
+      end
+    end
+
     #Validate porfile id
     def self.validate_profile_id(value, length=DEFAULT_PROFILE_ID_LENGTH)
       value = value.to_s
