@@ -1,7 +1,7 @@
 require_relative './test_base'
 require_relative './constants'
 
-class PhoneTestCase < BaseTestCase
+class AddressNameTestCase < BaseTestCase
 
   def initialize(name)
     @address_data = {
