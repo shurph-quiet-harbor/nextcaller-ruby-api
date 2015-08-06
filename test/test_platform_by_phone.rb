@@ -9,18 +9,6 @@ class PlatformPhoneTestCase < BaseTestCase
     super(name)
   end
 
-  def test_by_wrong_phone
-    @phone = '212555838'
-    stub_request(:get, prepare_url_for_test('records')).to_return(:body => PHONE_JSON_RESULT_EXAMPLE, :status => 200)
-    assert_raises(ArgumentError) { @client_platform.get_by_phone(@phone, @account_id) }
-  end
-
-  def test_by_wrong_platform
-    @account_id = 'user#12345'
-    stub_request(:get, prepare_url_for_test('records')).to_return(:body => PHONE_JSON_RESULT_EXAMPLE, :status => 200)
-    assert_raises(ArgumentError) { @client_platform.get_by_phone(@phone, @account_id) }
-  end
-
   def test_by_phone_json_request
     stub_request(:get, prepare_url_for_test('records')).to_return(:body => PHONE_JSON_RESULT_EXAMPLE, :status => 200)
     res = @client_platform.get_by_phone(@phone, @account_id)

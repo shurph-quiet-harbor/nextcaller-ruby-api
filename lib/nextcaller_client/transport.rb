@@ -41,7 +41,9 @@ module NextcallerClient
         case response
           when Net::HTTPSuccess then response
           else
-            if response.code.to_i.between?(400, 499)
+            if response.code.to_i.equal? 429
+              raise TooManyRequestsException.new(Utils.parse_error_response(response), Utils.parse_error_response_retry_after(response))
+            elsif response.code.to_i.between?(400, 499)
               raise HttpException.new(Utils.parse_error_response(response)), '%s Client Error: %s' % [response.code, response.message]
             elsif response.code.to_i.between?(500, 599)
               raise HttpException.new(Utils.parse_error_response(response)), '%s Server Error: %s' % [response.code, response.message]

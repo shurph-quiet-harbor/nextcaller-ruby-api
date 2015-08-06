@@ -16,9 +16,8 @@ module NextcallerClient
     #   phone           -- 10 digits phone, str ot int, required
     #
     def get_by_phone(phone)
-      Utils.validate_phone(phone)
       url_params = {
-        phone: phone,
+        phone: Utils.format_phone_number(phone),
         format: JSON_RESPONSE_FORMAT
       }
       url = Utils.prepare_url('records/', @sandbox, url_params)
@@ -32,7 +31,6 @@ module NextcallerClient
     #   email      -- Email, required, str, length is 30
     #
     def get_by_email(email)
-      Utils.validate_email(email)
       url_params = {
           format: JSON_RESPONSE_FORMAT,
           email: email
@@ -48,7 +46,6 @@ module NextcallerClient
     #   profile_id      -- Profile identifier, required, length is 30
     #
     def get_by_profile_id(profile_id)
-      Utils.validate_profile_id(profile_id)
       url_params = {
         format: JSON_RESPONSE_FORMAT
       }
@@ -79,7 +76,6 @@ module NextcallerClient
     #   data            -- dictionary with changed data, required
     #
     def update_by_profile_id(profile_id, data)
-      Utils.validate_profile_id(profile_id)
       url_params = {
         format: JSON_RESPONSE_FORMAT
       }
@@ -95,9 +91,8 @@ module NextcallerClient
     #   phone           -- 10 digits phone, str ot int, required
     #
     def get_fraud_level(phone)
-      Utils.validate_phone(phone)
       url_params = {
-        phone: phone,
+        phone: Utils.format_phone_number(phone),
         format: JSON_RESPONSE_FORMAT
       }
       url = Utils.prepare_url('fraud/', @sandbox, url_params)
@@ -118,10 +113,8 @@ module NextcallerClient
     #   account_id   -- platform username, str.
     #
     def get_by_phone(phone, account_id=DEFAULT_PLATFORM_ACCOUNT_ID)
-      Utils.validate_phone(phone)
-      Utils.validate_account_id(account_id)
       url_params = {
-        phone: phone,
+        phone: Utils.format_phone_number(phone),
         format: JSON_RESPONSE_FORMAT
       }
       url = Utils.prepare_url('records/', @sandbox, url_params)
@@ -136,8 +129,6 @@ module NextcallerClient
     #   account_id   -- platform username, str.
     #
     def get_by_profile_id(profile_id, account_id=DEFAULT_PLATFORM_ACCOUNT_ID)
-      Utils.validate_profile_id(profile_id)
-      Utils.validate_account_id(account_id)
       url_params = {
         format: JSON_RESPONSE_FORMAT
       }
@@ -151,9 +142,7 @@ module NextcallerClient
     # arguments:
     #   email      -- Email, required, str, length is 30
     #
-    def get_by_email(email, account_id=DEFAULT_PLATFORM_ACCOUNT_ID,)
-      Utils.validate_account_id(account_id)
-      Utils.validate_email(email)
+    def get_by_email(email, account_id=DEFAULT_PLATFORM_ACCOUNT_ID)
       url_params = {
           format: JSON_RESPONSE_FORMAT,
           email: email
@@ -171,8 +160,6 @@ module NextcallerClient
     #   account_id   -- platform username, str.
     #
     def update_by_profile_id(profile_id, account_id=DEFAULT_PLATFORM_ACCOUNT_ID, data)
-      Utils.validate_profile_id(profile_id)
-      Utils.validate_account_id(account_id)
       url_params = {
         format: JSON_RESPONSE_FORMAT
       }
@@ -189,7 +176,6 @@ module NextcallerClient
     #   account_id   -- platform username, str.
     #
     def get_by_address_name(data, account_id)
-      Utils.validate_account_id(account_id)
       Utils.validate_address(data)
       url_params = {
           format: JSON_RESPONSE_FORMAT
@@ -207,10 +193,8 @@ module NextcallerClient
     #   account_id   -- platform username, str.
     #
     def get_fraud_level(phone, account_id=DEFAULT_PLATFORM_ACCOUNT_ID)
-      Utils.validate_phone(phone)
-      Utils.validate_account_id(account_id)
       url_params = {
-        phone: phone,
+        phone: Utils.format_phone_number(phone),
         format: JSON_RESPONSE_FORMAT
       }
       url = Utils.prepare_url('fraud/', @sandbox, url_params)
@@ -229,7 +213,7 @@ module NextcallerClient
         page: page,
       }
       url = Utils.prepare_url('platform_users/', @sandbox, url_params)
-      response = @transport.make_http_request(url, 'GET', @debug, account_id: account_id)
+      response = @transport.make_http_request(url, 'GET', @debug)
       puts response.body
       block_given? ? yield(response) : JSON.parse(response.body)
     end
@@ -239,7 +223,6 @@ module NextcallerClient
     #   account_id   -- platform username, str.
     #
     def get_platform_user(account_id=DEFAULT_PLATFORM_ACCOUNT_ID)
-      Utils.validate_account_id(account_id)
       url_params = {
         format: JSON_RESPONSE_FORMAT
       }
@@ -255,7 +238,6 @@ module NextcallerClient
     #   data                -- dictionary with changed data, required
     #
     def update_platform_user(account_id=DEFAULT_PLATFORM_ACCOUNT_ID, data)
-      Utils.validate_account_id(account_id)
       url_params = {
         format: JSON_RESPONSE_FORMAT
       }
