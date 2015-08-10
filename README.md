@@ -26,9 +26,9 @@ Or install it yourself as:
 
     require '../lib/nextcaller_client'
     api_username = "XXXXX"
-    password = "YYYYY"
+    api_password = "YYYYY"
     phone_number = "121212..."
-    client = NextcallerClient::NextCallerClient.new(api_username, password)
+    client = NextcallerClient::NextCallerClient.new(api_username, api_password)
     resp = client.get_by_phone(phone_number)
     print resp
     
@@ -36,8 +36,8 @@ Or install it yourself as:
 
     require '../lib/nextcaller_client'
     api_username = "XXXXX"
-    password = "YYYYY"
-    client = NextcallerClient::NextCallerClient.new(api_username, password)
+    api_password = "YYYYY"
+    client = NextcallerClient::NextCallerClient.new(api_username, api_password)
     
 **Get profile by phone**
 
