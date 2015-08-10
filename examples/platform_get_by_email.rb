@@ -1,12 +1,12 @@
 require '../lib/nextcaller_client'
 
-username = 'XXXXX'
+api_username = 'XXXXX'
 password = 'XXXXX'
 sandbox = false
 account_id = 'user12345'
 email = 'email@exmaple.com'
 
-client = NextcallerClient::NextCallerPlatformClient.new(username, password, sandbox)
+client = NextcallerClient::NextCallerPlatformClient.new(api_username, password, sandbox)
 
 begin
   response_content = client.get_by_email(email, account_id)

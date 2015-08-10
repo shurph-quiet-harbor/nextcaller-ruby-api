@@ -1,12 +1,12 @@
 require '../lib/nextcaller_client'
 
-username = 'XXXXX'
+api_username = 'XXXXX'
 password = 'XXXXX'
 sandbox = false
 account_id = 'user12345'
 phone_number = '2125558383'
 
-client = NextcallerClient::NextCallerPlatformClient.new(username, password, sandbox)
+client = NextcallerClient::NextCallerPlatformClient.new(api_username, password, sandbox)
 
 begin
   response_content = client.get_by_phone(phone_number, account_id)

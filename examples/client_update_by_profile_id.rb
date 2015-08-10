@@ -1,11 +1,11 @@
 require '../lib/nextcaller_client'
 
-username = 'XXXXX'
+api_username = 'XXXXX'
 password = 'XXXXX'
 sandbox = false
 profile_id = '97d949a413f4ea8b85e9586e1f2d9a'
 
-client = NextcallerClient::NextCallerClient.new(username, password, sandbox)
+client = NextcallerClient::NextCallerClient.new(api_username, password, sandbox)
 
 begin
   data = { 

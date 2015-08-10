@@ -1,10 +1,10 @@
 require '../lib/nextcaller_client'
 
-username = 'XXXXX'
+api_username = 'XXXXX'
 password = 'XXXXX'
 sandbox = false
 
-client = NextcallerClient::NextCallerPlatformClient.new(username, password, sandbox)
+client = NextcallerClient::NextCallerPlatformClient.new(api_username, password, sandbox)
 
 begin
   response_content = client.get_platform_statistics

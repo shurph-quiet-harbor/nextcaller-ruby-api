@@ -1,6 +1,6 @@
 require '../lib/nextcaller_client'
 
-username = 'XXXXX'
+api_username = 'XXXXX'
 password = 'XXXXX'
 sandbox = false
 address_data = {
@@ -12,7 +12,7 @@ address_data = {
     'zip_code' => '10024'
 }
 
-client = NextcallerClient::NextCallerClient.new(username, password, sandbox)
+client = NextcallerClient::NextCallerClient.new(api_username, password, sandbox)
 
 begin
   response_content = client.get_by_address_name(address_data)
