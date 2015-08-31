@@ -1,7 +1,7 @@
 require '../lib/nextcaller_client'
 
-api_username = 'XXXXX'
-api_password = 'XXXXX'
+api_username = 'E72D42B98D2232703EE3'
+api_password = '826f22ade660d6612523b212b997094c70dba8e1'
 sandbox = false
 profile_id = '97d949a413f4ea8b85e9586e1f2d9a'
 
@@ -12,9 +12,6 @@ begin
     first_name: "Clark",
     last_name:"Kent",
     email:"clarkkent@supermail.com",
-    phone1:"1234567890",
-    phone2:"2345678901",
-    phone3:"3456789012",
     shipping_address1:{
         line1:"223 Kryptonite Ave.",
         line2:"",

@@ -18,6 +18,7 @@ rescue NextcallerClient::HttpException => error
   puts error.message
   puts error.content
 end
+
 # Output:
 # Hash
 # First name: Jerry

@@ -1,7 +1,7 @@
 require '../lib/nextcaller_client'
 
-api_username = 'XXXXX'
-api_password = 'XXXXX'
+api_username = 'E72D42B98D2232703EE3'
+api_password = '826f22ade660d6612523b212b997094c70dba8e1'
 sandbox = false
 phone_number = '2125558383'
 
@@ -18,10 +18,16 @@ rescue NextcallerClient::HttpException => error
   puts error.message
   puts error.content
 end
+
 # Output:
 # Hash
 # Fraud risk: medium
-# { 
-#   "fraud_risk"=>"medium", 
-#   "spoofed"=>"unknown"
+# {
+#   "created"=>1439237857,
+#   "created_iso"=>"2015-08-10T16:17:37.560719+00:00",
+#   "spoofed"=>"unknown",
+#   "ani"=>"12125558383",
+#   "fraud_risk"=>"medium",
+#   "cid"=>"unknown",
+#   "cid_blocked"=>"no"
 # }
