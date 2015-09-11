@@ -15,7 +15,7 @@ address_data = {
 client = NextcallerClient::NextCallerClient.new(api_username, api_password, sandbox)
 
 begin
-  response_content = client.get_by_address_name(address_data)
+  response_content = client.get_by_name_address(address_data)
   puts response_content.class # Response is a hash
   puts "First name: " + response_content['records'][0]['first_name'] # Retrieve first name for example
   puts response_content

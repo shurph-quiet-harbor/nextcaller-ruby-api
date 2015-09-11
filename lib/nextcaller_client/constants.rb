@@ -10,9 +10,9 @@ module NextcallerClient
   DEFAULT_PLATFORM_ACCOUNT_ID = 'ME'
 
   # urls
-  BASE_URL = 'api.nextcaller.com/v2/'
-  FULL_URL = 'https://api.nextcaller.com/v2/'
-  FULL_SANDBOX_URL = 'https://api.sandbox.nextcaller.com/v2/'
+  BASE_URL = 'api.nextcaller.com/v2.1/'
+  FULL_URL = 'https://api.nextcaller.com/v2.1/'
+  FULL_SANDBOX_URL = 'https://api.sandbox.nextcaller.com/v2.1/'
 
   # address
   ADDRESS_MANDATORY_FIELDS = %w(first_name last_name address)

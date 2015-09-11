@@ -21,21 +21,6 @@ module NextcallerClient
       end
     end
 
-    def self.format_phone_number(phone_number)
-      phone_number.delete('^0-9')
-    end
-
-    #Validate address_data
-    def self.validate_address(address_data)
-
-      unless address_data
-          raise ArgumentError, 'Invalid address data: %s. Address data should be filled.' % address_data
-      end
-      unless address_data.kind_of? Hash
-          raise ArgumentError, 'Invalid address data: %s. Address data cannot be type of %s.' % address_data, address_data.class
-      end
-    end
-
     #Prepare url from path and params
     def self.prepare_url(path, sandbox, url_params={})
       url = '%s%s' % [sandbox ? FULL_SANDBOX_URL : FULL_URL, path]

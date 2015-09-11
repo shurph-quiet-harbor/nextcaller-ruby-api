@@ -8,7 +8,7 @@ account_id = 'user12345'
 client = NextcallerClient::NextCallerPlatformClient.new(api_username, api_password, sandbox)
 
 begin
-  response_content = client.get_platform_user(account_id)
+  response_content = client.get_platform_account(account_id)
   puts response_content.class # Response is a hash
   puts "First name: " + response_content['first_name'] # Retrieve first name for example
   puts response_content

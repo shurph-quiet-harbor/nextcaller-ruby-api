@@ -4,14 +4,14 @@ module NextcallerClient
 
     attr_accessor :auth, :user_agent, :log
 
-    def initialize(auth, user_agent=DEFAULT_USER_AGENT, platform=false)
+    def initialize(auth, user_agent=DEFAULT_USER_AGENT)
       @auth = auth
       @user_agent = user_agent
       @log = Logger.new(STDOUT)
       @log.level = Logger::DEBUG
     end
 
-    def make_http_request(url, method='GET', debug=false, data={}, account_id: nil)
+    def make_http_request(url, method='GET', data={}, account_id: nil)
       uri = URI.parse(url)
       case method
         when 'GET'
@@ -31,10 +31,6 @@ module NextcallerClient
       https = Net::HTTP.new(hostname, uri.port)
       https.read_timeout = DEFAULT_REQUEST_TIMEOUT
       https.use_ssl = true
-
-      # https.set_debug_output($stderr) if debug              #deep debug
-      @log.debug('Request url: %s' % url) if debug
-      @log.debug('Request body: %s' % data.to_s) if debug && method == 'POST'
 
       begin
         response = https.start { |http| http.request(request) }

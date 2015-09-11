@@ -17,7 +17,7 @@ class AddressNameTestCase < BaseTestCase
 
   def test_profile_get_name_address_json_request
     stub_request(:get, prepare_url_for_test('records/')).to_return(:body => PHONE_JSON_RESULT_EXAMPLE, :status => 200)
-    res = @client.get_by_address_name(@address_data)
+    res = @client.get_by_name_address(@address_data)
 
     assert_equal(res['records'][0]['email'], 'demo@nextcaller.com')
     assert_equal(res['records'][0]['first_name'], 'Jerry')
