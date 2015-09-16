@@ -1,4 +1,4 @@
-require '../lib/nextcaller_client'
+require 'nextcaller_client'
 require 'webmock/minitest'
 require 'minitest/autorun'
 require_relative './constants'

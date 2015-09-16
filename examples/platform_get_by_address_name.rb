@@ -1,4 +1,4 @@
-require '../lib/nextcaller_client'
+require 'nextcaller_client'
 
 api_username = 'XXXXX'
 api_password = 'XXXXX'

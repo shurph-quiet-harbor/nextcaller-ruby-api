@@ -1,7 +1,7 @@
-require '../lib/nextcaller_client'
+require 'nextcaller_client'
 
-api_username = 'XXXXX'
-api_password = 'XXXXX'
+api_username = 'F72T45B99D2432723EC9'
+api_password = '327f22vde660z6622623b812b00709xc70dbb8ef'
 sandbox = false
 email = 'email@exmaple.com'
 

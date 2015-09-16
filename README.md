@@ -24,7 +24,7 @@ Or install it yourself as:
 
 **Example**
 
-    require '../lib/nextcaller_client'
+    require 'nextcaller_client'
     api_username = "XXXXX"
     api_password = "YYYYY"
     phone_number = "121212..."
@@ -34,7 +34,7 @@ Or install it yourself as:
     
 **Initializing client**
 
-    require '../lib/nextcaller_client'
+    require 'nextcaller_client'
     api_username = "XXXXX"
     api_password = "YYYYY"
     client = NextcallerClient::NextCallerClient.new(api_username, api_password)
