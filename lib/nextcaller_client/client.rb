@@ -43,10 +43,10 @@ module NextcallerClient
     # arguments:
     #   data                -- dictionary with changed data, required
     #
-    def get_by_name_address(data)
+    def get_by_name_address(name_address_data)
       url_params = {
           format: JSON_RESPONSE_FORMAT
-      }.merge(data)
+      }.merge(name_address_data)
       url = Utils.prepare_url('records/', @sandbox, url_params)
       response = @transport.make_http_request(url, 'GET')
 
@@ -142,10 +142,10 @@ module NextcallerClient
     #   data                -- dictionary with changed data, required
     #   account_id   -- platform username, str.
     #
-    def get_by_name_address(data, account_id)
+    def get_by_name_address(name_address_data, account_id)
       url_params = {
           format: JSON_RESPONSE_FORMAT
-      }.merge(data)
+      }.merge(name_address_data)
       url = Utils.prepare_url('records/', @sandbox, url_params)
       response = @transport.make_http_request(url, 'GET', account_id: account_id)
 
@@ -233,12 +233,12 @@ module NextcallerClient
     #   account_id   -- platform username, str.
     #   data                -- dictionary with changed data, required
     #
-    def update_platform_account(data, account_id)
+    def update_platform_account(account_data, account_id)
       url_params = {
           format: JSON_RESPONSE_FORMAT
       }
       url = Utils.prepare_url('accounts/%s/' % account_id, @sandbox, url_params)
-      data = Utils.prepare_json_data(data)
+      data = Utils.prepare_json_data(account_data)
       response = @transport.make_http_request(url, 'POST', data)
 
       block_given? ? yield(response) : response

@@ -1,7 +1,7 @@
 require '../lib/nextcaller_client'
 
-api_username = 'E72D42B98D2232703EE3'
-api_password = '826f22ade660d6612523b212b997094c70dba8e1'
+api_username = 'XXXXX'
+api_password = 'XXXXX'
 sandbox = false
 phone_number = '2125558383'
 
