@@ -173,7 +173,7 @@ PLATFORM_STATISTICS_JSON_RESULT = '
   }'
 
 PLATFORM_USER_JSON_REQUEST_EXAMPLE = 
-  { 
+  {
     first_name: "platform_user1_fname",  
     last_name: "platform_user1_lname",  
     company_name: "platform_company1_name",  

@@ -117,7 +117,7 @@ module NextcallerClient
         format: JSON_RESPONSE_FORMAT
       }
       url = Utils.prepare_url('records/', @sandbox, url_params)
-      response = @transport.make_http_request(url, 'GET', account_id: account_id)
+      response = @transport.make_http_request(url, 'GET',  account_id)
 
       block_given? ? yield(response) : JSON.parse(response.body)
     end
@@ -132,7 +132,7 @@ module NextcallerClient
         format: JSON_RESPONSE_FORMAT
       }
       url = Utils.prepare_url('users/%s/' % profile_id, @sandbox, url_params)
-      response = @transport.make_http_request(url, 'GET', account_id: account_id)
+      response = @transport.make_http_request(url, 'GET', account_id)
 
       block_given? ? yield(response) : JSON.parse(response.body)
     end
@@ -147,7 +147,7 @@ module NextcallerClient
           format: JSON_RESPONSE_FORMAT
       }.merge(name_address_data)
       url = Utils.prepare_url('records/', @sandbox, url_params)
-      response = @transport.make_http_request(url, 'GET', account_id: account_id)
+      response = @transport.make_http_request(url, 'GET',  account_id)
 
       block_given? ? yield(response) : JSON.parse(response.body)
     end
@@ -162,7 +162,7 @@ module NextcallerClient
           email: email
       }
       url = Utils.prepare_url('records/', @sandbox, url_params)
-      response = @transport.make_http_request(url, 'GET', account_id: account_id)
+      response = @transport.make_http_request(url, 'GET',  account_id)
 
       block_given? ? yield(response) : JSON.parse(response.body)
     end
@@ -179,7 +179,7 @@ module NextcallerClient
       }
       url = Utils.prepare_url('users/%s/' % profile_id, @sandbox, url_params)
       data = Utils.prepare_json_data(data)
-      response = @transport.make_http_request(url, 'POST', data, account_id: account_id)
+      response = @transport.make_http_request(url, 'POST', data,  account_id)
 
       block_given? ? yield(response) : response
     end
@@ -257,7 +257,7 @@ module NextcallerClient
         format: JSON_RESPONSE_FORMAT
       }
       url = Utils.prepare_url('fraud/', @sandbox, url_params)
-      response = @transport.make_http_request(url, 'GET', account_id: account_id)
+      response = @transport.make_http_request(url, 'GET',  account_id)
 
       block_given? ? yield(response) : JSON.parse(response.body)
     end

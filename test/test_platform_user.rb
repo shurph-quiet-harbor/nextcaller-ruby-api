@@ -16,7 +16,7 @@ class PlatformUserTestCase < BaseTestCase
 
   def test_platform_update_user_json_request
     stub_request(:post, prepare_url_for_test('accounts/%s' % @account_id)).to_return(:status => 204)
-    res = @client_platform.update_platform_account(@account_id, PLATFORM_USER_JSON_REQUEST_EXAMPLE)
+    res = @client_platform.update_platform_account(PLATFORM_USER_JSON_REQUEST_EXAMPLE, @account_id)
     assert_equal(res.code, '204')
   end
 
