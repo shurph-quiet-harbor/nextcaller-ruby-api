@@ -1,15 +1,15 @@
 require 'nextcaller_client'
 
-username = 'XXXXX'
-password = 'XXXXX'
+api_username = 'XXXXX'
+api_password = 'XXXXX'
 sandbox = false
-platform_username = 'user12345'
+account_id = 'user12345'
 phone_number = '2125558383'
 
-client = NextcallerClient::NextCallerPlatformClient.new(username, password, sandbox)
+client = NextcallerClient::NextCallerPlatformClient.new(api_username, api_password, sandbox)
 
 begin
-  response_content = client.get_fraud_level(phone_number, platform_username)
+  response_content = client.get_fraud_level(phone_number, account_id)
   puts response_content.class # Response is a hash
   puts "Fraud risk: " + response_content['fraud_risk'] # Retrieve fraud risk for example
   puts response_content

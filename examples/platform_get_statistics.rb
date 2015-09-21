@@ -1,15 +1,15 @@
 require 'nextcaller_client'
 
-username = 'XXXXX'
-password = 'XXXXX'
+api_username = 'XXXXX'
+api_password = 'XXXXX'
 sandbox = false
 
-client = NextcallerClient::NextCallerPlatformClient.new(username, password, sandbox)
+client = NextcallerClient::NextCallerPlatformClient.new(api_username, api_password, sandbox)
 
 begin
   response_content = client.get_platform_statistics
   puts response_content.class # Response is a hash
-  puts "Platform name: " + response_content['object_list'][0]['username'] # Retrieve platform name for example
+  puts "Platform name: " + response_content['data'][0]['id'] # Retrieve platform name for example
   puts response_content
 rescue ArgumentError => error
   puts error.message

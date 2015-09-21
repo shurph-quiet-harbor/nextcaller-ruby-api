@@ -8,18 +8,6 @@ class PhoneTestCase < BaseTestCase
     super(name)
   end
 
-  def test_by_short_phone
-    @phone = '212555838'
-    stub_request(:get, prepare_url_for_test('records')).to_return(:body => PHONE_JSON_RESULT_EXAMPLE, :status => 200)
-    assert_raises(ArgumentError) { @client.get_by_phone(@phone) }
-  end
-
-  def test_by_wrong_phone
-    @phone = 'XXXXXXXXXX'
-    stub_request(:get, prepare_url_for_test('records')).to_return(:body => PHONE_JSON_RESULT_EXAMPLE, :status => 200)
-    assert_raises(ArgumentError) { @client.get_by_phone(@phone) }
-  end
-
   def test_by_phone_json_request
     stub_request(:get, prepare_url_for_test('records')).to_return(:body => PHONE_JSON_RESULT_EXAMPLE, :status => 200)
     res = @client.get_by_phone(@phone)

@@ -1,15 +1,15 @@
 require 'nextcaller_client'
 
-username = 'XXXXX'
-password = 'XXXXX'
+api_username = 'XXXXX'
+api_password = 'XXXXX'
 sandbox = false
-platform_username = 'user12345'
+account_id = 'user12345'
 profile_id = '97d949a413f4ea8b85e9586e1f2d9a'
 
-client = NextcallerClient::NextCallerPlatformClient.new(username, password, sandbox)
+client = NextcallerClient::NextCallerPlatformClient.new(api_username, api_password, sandbox)
 
 begin
-  response_content = client.get_by_profile_id(profile_id, platform_username)
+  response_content = client.get_by_profile_id(profile_id, account_id)
   puts response_content.class # Response is a hash
   puts "First name: " + response_content['first_name'] # Retrieve first name for example
   puts response_content

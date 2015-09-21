@@ -3,13 +3,12 @@ require 'nextcaller_client'
 api_username = 'XXXXX'
 api_password = 'XXXXX'
 sandbox = false
-account_id = 'user12345'
-phone_number = '2125558383'
+email = 'email@exmaple.com'
 
-client = NextcallerClient::NextCallerPlatformClient.new(api_username, api_password, sandbox)
+client = NextcallerClient::NextCallerClient.new(api_username, api_password, sandbox)
 
 begin
-  response_content = client.get_by_phone(phone_number, account_id)
+  response_content = client.get_by_email(email)
   puts response_content.class # Response is a hash
   puts "First name: " + response_content['records'][0]['first_name'] # Retrieve first name for example
   puts response_content
@@ -19,6 +18,7 @@ rescue NextcallerClient::HttpException => error
   puts error.message
   puts error.content
 end
+
 # Output:
 # Hash
 # First name: Jerry

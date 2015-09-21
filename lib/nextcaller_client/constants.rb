@@ -6,9 +6,15 @@ module NextcallerClient
   DEFAULT_PROFILE_ID_LENGTH = 30
   DEFAULT_USER_AGENT = 'nextcaller/ruby/%s' % VERSION
 
-  # urls
-  BASE_URL = 'api.nextcaller.com/v2/'
-  FULL_URL = 'https://api.nextcaller.com/v2/'
-  FULL_SANDBOX_URL = 'https://api.sandbox.nextcaller.com/v2/'
+  DEFAULT_PLATFORM_ACCOUNT_HEADER = 'Nc-Account-Id'
+  DEFAULT_PLATFORM_ACCOUNT_ID = 'ME'
 
+  # urls
+  BASE_URL = 'api.nextcaller.com/v2.1/'
+  FULL_URL = 'https://api.nextcaller.com/v2.1/'
+  FULL_SANDBOX_URL = 'https://api.sandbox.nextcaller.com/v2.1/'
+
+  # address
+  ADDRESS_MANDATORY_FIELDS = %w(first_name last_name address)
+  ADDRESS_ALLOWED_FIELDS = ADDRESS_MANDATORY_FIELDS + %w(city state zip_code middle_name apt_suite extended_zip)
 end

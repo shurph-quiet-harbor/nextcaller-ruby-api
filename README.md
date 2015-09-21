@@ -25,19 +25,19 @@ Or install it yourself as:
 **Example**
 
     require 'nextcaller_client'
-    username = "XXXXX"
-    password = "YYYYY"
+    api_username = "XXXXX"
+    api_password = "YYYYY"
     phone_number = "121212..."
-    client = NextcallerClient::NextCallerClient.new(username, password)
+    client = NextcallerClient::NextCallerClient.new(api_username, api_password)
     resp = client.get_by_phone(phone_number)
     print resp
     
 **Initializing client**
 
     require 'nextcaller_client'
-    username = "XXXXX"
-    password = "YYYYY"
-    client = NextcallerClient::NextCallerClient.new(username, password)
+    api_username = "XXXXX"
+    api_password = "YYYYY"
+    client = NextcallerClient::NextCallerClient.new(api_username, api_password)
     
 **Get profile by phone**
 

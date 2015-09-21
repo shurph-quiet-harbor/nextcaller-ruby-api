@@ -16,18 +16,6 @@ class ProfileTestCase < BaseTestCase
     assert_equal(res['last_name'], 'Seinfeld')
   end
 
-  def test_by_wrong_profile_id
-    @profile_id = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
-    stub_request(:get, prepare_url_for_test('users/')).to_return(:body => PROFILE_JSON_RESULT_EXAMPLE, :status => 200)
-    assert_raises(ArgumentError) { @client.get_by_profile_id(@profile_id) }
-  end
-
-  def test_profile_update_by_wrong_profile_id
-    @profile_id = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
-    stub_request(:post, prepare_url_for_test('users/')).to_return(:status => 204)
-    assert_raises(ArgumentError) { @client.get_by_profile_id(@profile_id) }
-  end
-
   def test_profile_update_json_request
     stub_request(:post, prepare_url_for_test('users/')).to_return(:status => 204)
     res = @client.update_by_profile_id(@profile_id, PROFILE_JSON_REQUEST_EXAMPLE)

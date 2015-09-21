@@ -14,11 +14,5 @@ class FraudLevelTestCase < BaseTestCase
     assert_equal(res['spoofed'], 'false')
     assert_equal(res['fraud_risk'], 'low')
   end
-
-  def test_fraud_level_by_wrong_phone
-    @phone = '123'
-    stub_request(:get, prepare_url_for_test('fraud/')).to_return(:body => FRAUD_LEVEL_JSON_RESULT_EXAMPLE, :status => 200)
-    assert_raises(ArgumentError) { @client.get_fraud_level(@phone) }
-  end
-
+  
 end

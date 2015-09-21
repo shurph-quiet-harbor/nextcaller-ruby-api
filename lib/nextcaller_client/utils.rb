@@ -9,35 +9,15 @@ module NextcallerClient
       data.to_json
     end
 
+    def self.parse_error_response_retry_after(resp)
+      resp['Retry-After']
+    end
+
     def self.parse_error_response(resp)
       if resp['Content-Type'].include? 'application/json'
         JSON.parse(resp.body)
       else
         resp.body
-      end
-    end
-
-    #Validate phone format
-    def self.validate_phone(value, length=DEFAULT_PHONE_LENGTH)
-      value = value.to_s
-      unless value =~ /^[0-9]{#{length}}$/
-        raise ArgumentError, 'Invalid phone number: %s. Phone should consists of #{length} digits.' % value
-      end
-    end
-
-    #Validate porfile id
-    def self.validate_profile_id(value, length=DEFAULT_PROFILE_ID_LENGTH)
-      value = value.to_s
-      unless value =~ /^[0-9a-zA-Z]{#{length}}$/
-        raise ArgumentError, 'Invalid profile id: %s. Profile id should consists of #{length} characters.' % value
-      end
-    end
-
-    #Validate platform_username
-    def self.validate_platform_username(value)
-      value = value.to_s
-      if value =~ /\W/
-        raise ArgumentError, 'Invalid platform name: %s. Platfrom name should contain only an alphanumeric character, including _.' % value
       end
     end
 
