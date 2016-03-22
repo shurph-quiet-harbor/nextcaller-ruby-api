@@ -12,8 +12,6 @@ PHONE_JSON_RESULT_EXAMPLE = '
         "last_name": "Seinfeld",
         "name": "Jerry Seinfeld",
         "language": "English",
-        "fraud_threat": "low",
-        "spoof": "false",
         "phone": [
           {
             "number": "2125558383"
@@ -103,12 +101,6 @@ PROFILE_JSON_RESULT_EXAMPLE = '
     "occupation": "Entertainer",
     "education": "Completed College",
     "department": "not specified"
-  }'
-
-FRAUD_LEVEL_JSON_RESULT_EXAMPLE = '
-  {
-    "spoofed": "false",
-    "fraud_risk": "low"
   }'
 
 PLATFORM_STATISTICS_JSON_RESULT = '

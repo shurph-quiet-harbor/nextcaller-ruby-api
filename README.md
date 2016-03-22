@@ -66,14 +66,6 @@ Or install it yourself as:
     
     # Returns 204 response in the case of the succesfull request.
 
-**Get fraud level**
-
-    resp = client.get_fraud_level(phone)
-
-    # arguments:
-    #   phone           -- 10 digits phone, str or int, required
-
-
 
 ##Errors handling
 

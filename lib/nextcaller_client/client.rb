@@ -85,21 +85,6 @@ module NextcallerClient
       block_given? ? yield(response) : response
     end
 
-    # Get fraud level for phone
-    # arguments:
-    #   phone           -- 10 digits phone, str ot int, required
-    #
-    def get_fraud_level(phone)
-      url_params = {
-        phone: phone,
-        format: JSON_RESPONSE_FORMAT
-      }
-      url = Utils.prepare_url('fraud/', @sandbox, url_params)
-      response = @transport.make_http_request(url, 'GET')
-
-      block_given? ? yield(response) : JSON.parse(response.body)
-    end
-
   end
 
 
@@ -243,25 +228,6 @@ module NextcallerClient
 
       block_given? ? yield(response) : response
     end
-
-
-    # Get profiles by phone
-    # arguments:
-    #   phone               -- 10 digits phone, str ot int, required
-    #   data                -- dictionary with changed data, required
-    #   account_id   -- platform username, str.
-    #
-    def get_fraud_level(phone, account_id=DEFAULT_PLATFORM_ACCOUNT_ID)
-      url_params = {
-        phone: phone,
-        format: JSON_RESPONSE_FORMAT
-      }
-      url = Utils.prepare_url('fraud/', @sandbox, url_params)
-      response = @transport.make_http_request(url, 'GET',  account_id)
-
-      block_given? ? yield(response) : JSON.parse(response.body)
-    end
-
 
   end
 
